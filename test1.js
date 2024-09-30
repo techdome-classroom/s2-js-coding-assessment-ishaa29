@@ -1,44 +1,24 @@
-const {isValid} = require("./program1");
+// test1.js
+const { isValid } = require("./program1");
 const assert = require("assert");
 
-
-
-describe("test cases for problem 1 ", function () {
-
-    it("test case 1", function () {
-        const result = isValid("()");
-        assert.equal(true, result);
+describe("test cases for isValid function", function () {
+    it("should return true for valid parentheses", function () {
+        assert.equal(isValid("()"), true);
+        assert.equal(isValid("()[]{}"), true);
+        assert.equal(isValid("{[()]}"), true);
     });
 
-    it("test case 2", function () {
-        const result = isValid("()[]{}");
-        assert.equal(true, result);
+    it("should return false for invalid parentheses", function () {
+        assert.equal(isValid("(]"), false);
+        assert.equal(isValid("([)]"), false);
     });
 
-    it("test case 3", function () {
-        const result = isValid("{[()]}");
-        assert.equal(true, result);
+    it("should return true for an empty string", function () {
+        assert.equal(isValid(""), true);
     });
 
-    it("test case 4", function () {
-        const result = isValid("(]");
-        assert.equal(false, result);
+    it("should return false for unmatched parentheses", function () {
+        assert.equal(isValid("(){"), false);
     });
-
-    it("test case 5", function () {
-        const result = isValid("([)]");
-        assert.equal(false, result);
-    });
-
-    it("test case 6", function () {
-        const result = isValid("");
-        assert.equal(true, result);
-    });
-
-    it("test case 7", function () {
-        const result = isValid("(){");
-        assert.equal(false, result);
-    });
-
-})
-
+});
